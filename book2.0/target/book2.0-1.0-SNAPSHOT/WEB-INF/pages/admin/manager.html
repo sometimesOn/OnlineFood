@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员页面</title>
+    <script type="text/javascript" th:src="@{/static/script/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/axios.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/manager.js}"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+</head>
+<body>
+<div id="manager_div">
+   <h2>修改图书</h2>
+    <div>
+        <span>修改</span>
+        <select class="select" v-model="bookId">
+            <option v-for="book in bookList" :value="book.bookId">{{book.bookName}}</option>
+        </select>
+        <span>的</span>
+        <select class="select" v-model="option">
+            <option value="bookCount">库存</option>
+            <option value="bookImg">图片的url</option>
+            <option value="price">价格</option>
+            <option value="bookName">书名</option>
+            <option value="bookStatus">状态</option>
+        </select>
+        <span>为</span>
+        <input v-model.trim="text">
+        <button @click="updateBook()">确认修改</button>
+    </div>
+</div>
+</body>
+</html>

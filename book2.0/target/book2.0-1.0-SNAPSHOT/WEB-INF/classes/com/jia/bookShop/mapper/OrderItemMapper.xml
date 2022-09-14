@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jia.bookShop.mapper.OrderItemMapper">
+    <insert id="insertOrderItem">
+        insert into t_order_item values
+        <foreach collection="carts" item="cart" separator=",">
+            (null,#{cart.book.bookId},#{cart.buyCount},#{orderId})
+        </foreach>
+    </insert>
+</mapper>

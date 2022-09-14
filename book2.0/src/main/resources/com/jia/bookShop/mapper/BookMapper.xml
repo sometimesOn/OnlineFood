@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jia.bookShop.mapper.BookMapper">
+    <update id="updateBook">
+        update t_book set ${option} = #{obj} where bookId = #{bookId}
+    </update>
+    <select id="getAllBook" resultType="com.jia.bookShop.pojo.Book">
+        select * from t_book where CONCAT(bookName,author) like '%${keyword}%'
+    </select>
+    <select id="getBookById" resultType="com.jia.bookShop.pojo.Book">
+        select * from t_book where bookId = #{bookId}
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a th:href="@{/}"><img class="logo" th:src="@{/static/imgs/logo.jpg}" /></a>
+            <a th:href="@{/}"><span class="f25">布鲁书城</span></a>
+        </div>
+        <div class="header-right">
+            <span><a class="normal-btn" th:href="@{/user/manager}">后台管理</a></span>
+            <span><a class="normal-btn" th:href="@{/}">回到首页</a></span>
+            <span><a class="normal-btn" th:href="@{/cart}">我的购物车</a></span>
+            <span><a class="danger-btn" th:href="@{/user/quit}">退出登录</a></span>
+        </div>
+    </div>
+    <hr>
+</body>
+</html>

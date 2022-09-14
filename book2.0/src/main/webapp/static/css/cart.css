@@ -1,0 +1,30 @@
+
+.cart-table-div{
+    width: 90%;
+    margin-left: 5%;
+    background-color: white;
+}
+
+#cart-table{
+    font-size: 35px;
+    margin-left: 5%;
+}
+
+#cart-table th{
+    width: 170px;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    height: 50px;
+}
+#cart-table td{
+    width: 170px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    height: 200px;
+}
+#cart-table img{
+    width: 120px;
+    height: 150px;
+}

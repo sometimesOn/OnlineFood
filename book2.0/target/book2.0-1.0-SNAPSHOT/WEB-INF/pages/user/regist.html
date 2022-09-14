@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/regist.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="center">
+            <a th:href="@{/book/page/1}"><img class="logo" th:src="@{/static/imgs/logo.jpg}" /></a>
+            <a th:href="@{/book/page/1}"><span class="f25">布鲁书城</span></a>
+        </div>
+    </div>
+    <div class="regist-container">
+        <div class="regist-content">
+            <form class="regist-form" th:action="@{/user/regist}" method="post">
+                <h1>注 册</h1>
+                <div class="form-item">
+                    <label>用户账户:</label>
+                    <input type="text" id="unameTxt" name="uName" placeholder="请输入账号" />
+                </div>
+                <span class="errorMsg" id="unameSpan">用户名长度应为4到16个数字或字母组成</span>
+                <div class="form-item">
+                    <label>用户密码:</label>
+                    <input type="password" name="pwd" id="pwdTxt" placeholder="请输入密码">
+                </div>
+                <span class="errorMsg" id="pwdSpan">密码至少为五位</span>
+                <div class="form-item">
+                    <label>确认密码:</label>
+                    <input type="password" name="cpwd" id="cpwdTxt" placeholder="请再次输入密码">
+                </div>
+                <span class="errorMsg" id="cpwdSpan">两个输入的密码要一致</span>
+                <div class="form-item">
+                    <label>用户邮箱:</label>
+                    <input type="email" name="email" id="emailTxt" placeholder="请输入邮箱">
+                </div>
+                <span class="errorMsg" id="emailSpan">邮箱格式有误</span>
+                <div class="form-item">
+                    <button type="submit">注册</button>
+                    <a th:href="@{/to/login}" class="normal-btn">返回登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

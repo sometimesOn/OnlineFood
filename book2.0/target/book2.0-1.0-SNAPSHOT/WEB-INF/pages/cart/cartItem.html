@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的购物车</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/cart.css}">
+    <script type="text/javascript" th:src="@{/static/script/cart.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/axios.min.js}"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a th:href="@{/book/page}"><img class="logo" th:src="@{/static/imgs/logo.jpg}" /></a>
+            <a th:href="@{/book/page}"><span class="f25">布鲁书城</span></a>
+        </div>
+        <div class="header-right">
+            <span><a class="normal-btn" th:href="@{/user/manager}">后台管理</a></span>
+            <span><a class="normal-btn" th:href="@{/order}">我的订单</a></span>
+            <span><a class="normal-btn" th:href="@{/book/page}">回到首页</a></span>
+            <span><a class="danger-btn" th:href="@{/user/quit}">退出登录</a></span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cart-table-div" id="cart_div">
+            <table id="cart-table">
+                <thead>
+                <tr >
+                    <th>图片</th>
+                    <th>商品名称</th>
+                    <th>数量</th>
+                    <th>单价</th>
+                    <th>金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr v-if="Object.keys(cartItem.cartMap).length == 0">
+                        <th colspan="7" style="color: blue">购物车空空如也！<a th:href="@{/book/page}" class="normal-btn">点击继续购物</a></th>
+                    </tr>
+                    <tr v-else v-for="cart in cartItem.cartMap">
+                        <td><img :src="cart.book.bookImg"></td>
+                        <td>{{cart.book.bookName}}</td>
+                        <td>
+                            <button @click="editCount(cart.cartId,cart.buyCount-1)" :disabled="cart.buyCount == 1">-</button>
+                            <span>{{cart.buyCount}}</span>
+                            <button @click="editCount(cart.cartId,cart.buyCount+1)">+</button>
+                        </td>
+                        <td>{{cart.book.price}}</td>
+                        <td>{{cart.totalValue}}</td>
+                        <td>
+                            <button @click="deleteCart(cart.cartId)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <div class="left-div">
+                <a th:href="@{/book/page}" class="normal-btn">点击继续购物</a>
+            </div>
+            <div class="right-div">
+                <span>共计：{{cartItem.totalBookCount}} 件商品</span>
+                <span>合计：{{cartItem.totalMoney}}</span>
+                <a th:href="@{/pay}" class="normal-btn">去支付</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

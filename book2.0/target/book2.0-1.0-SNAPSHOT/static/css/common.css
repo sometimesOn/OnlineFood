@@ -1,0 +1,125 @@
+.header{
+    height: 70px;
+    width: 100%;
+    background-color: black;
+}
+
+.header-left{
+    height: 55px;
+    float:left;
+}
+
+.left-div{
+    float: left;
+}
+.right-div{
+    float: right;
+}
+
+
+.header-right{
+    margin-top: 40px;
+    float:right;
+    padding-right: 10px;
+}
+
+.header,a{
+    text-decoration: none;
+    color: white;
+}
+
+.danger-btn{
+    text-decoration: none;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 15px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+.danger-btn:hover{
+    background-color: red;
+}
+
+.logo{
+    margin-top: 15px;
+    margin-left: 20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.f25{
+    font-size: 25px;
+}
+
+.littleBig-btn{
+    text-decoration: none;
+    background-color: #5cb85c;
+    color: white;
+    size: 60px;
+    font-size: 15px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+
+.normal-btn{
+    text-decoration: none;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 15px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+.normal-btn:hover{
+    background-color: blue;
+}
+
+.container{
+    width: 90%;
+    margin-left: 5%;
+    height: 100%;
+}
+
+.center{
+    /*margin-left: 50%;*/
+    text-align: center;
+}
+
+.errorMsg{
+    color: red;
+    text-align: center;
+    font-size: 15px;
+    visibility: hidden;
+}
+
+.form-item{
+    height: 30px;
+}
+
+.form-em{
+    margin-top: 15px;
+    height: 30px;
+}
+
+.error{
+    color: red;
+    text-align: center;
+    font-size: 15px;
+}
+
+.select{
+    border: 1px solid gold;
+    border-radius: 5px;
+
+    outline: none;
+    text-overflow: ellipsis;
+
+    width: 150px;
+    height: 30px;
+    line-height: 25px;
+
+}

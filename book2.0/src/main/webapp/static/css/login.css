@@ -1,0 +1,29 @@
+.login-container{
+    font-family: "Microsoft YaHei UI Light";
+    font-size: 25px;
+    background-image: url("../../static/imgs/background.png");
+    background-attachment: fixed;
+    background-size: 100%;
+    width: 100%;
+    height: 560px;
+}
+
+
+#login-context{
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: yellow;
+    height: 400px;
+    width: 450px;
+    margin-left: 470px;
+    text-align: center;
+}
+
+#login-context input{
+    height: 20px;
+}
+
+.login-form{
+    margin-top: 50px;
+}
+

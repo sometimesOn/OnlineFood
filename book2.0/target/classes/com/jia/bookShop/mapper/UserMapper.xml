@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jia.bookShop.mapper.UserMapper">
+
+    <insert id="addUser">
+        insert into t_user values (null,#{uName},#{pwd},#{email},null,null)
+    </insert>
+    <select id="getUserByName" resultType="com.jia.bookShop.pojo.User">
+        select * from t_user where uName = #{uname} and pwd = #{pwd}
+    </select>
+    <select id="getUserById" resultType="com.jia.bookShop.pojo.User">
+        select * from t_user where uId = #{uId}
+    </select>
+</mapper>

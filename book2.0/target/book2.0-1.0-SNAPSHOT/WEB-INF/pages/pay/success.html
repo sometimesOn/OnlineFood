@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>支付成功</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a th:href="@{/book/page}"><img class="logo" th:src="@{/static/imgs/logo.jpg}" /></a>
+            <a th:href="@{/book/page}"><span class="f25">布鲁书城</span></a>
+        </div>
+        <div class="header-right">
+            <span><a class="normal-btn" th:href="@{/user/manager}">后台管理</a></span>
+            <span><a class="normal-btn" th:href="@{/order}">我的订单</a></span>
+            <span><a class="normal-btn" th:href="@{/book/page}">回到首页</a></span>
+            <span><a class="danger-btn" th:href="@{/user/quit}">退出登录</a></span>
+        </div>
+    </div>
+    <br>
+    <h3 style="text-align: center">恭喜你支付成功<a style="color: red" th:href="@{/book/page}">回到首页</a></h3>
+</body>
+</html>

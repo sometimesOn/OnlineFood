@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!--扫描控制层组件 -->
+    <context:component-scan base-package="com.jia.bookShop.controller"></context:component-scan>
+
+    <!--配置thymeleaf视图解析器 -->
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver" id="viewResolver">
+        <property name="order" value="1"></property>
+        <property name="characterEncoding" value="UTF-8"></property>
+        <property name="templateEngine">
+            <bean class="org.thymeleaf.spring5.SpringTemplateEngine">
+                <property name="templateResolver">
+                    <bean class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+                        <!-- 视图前缀-->
+                        <property name="prefix" value="/WEB-INF/pages/"/>
+                        <!-- 视图前缀-->
+                        <property name="suffix" value=".html"/>
+                        <property name="templateMode" value="HTML5"/>
+                        <property name="characterEncoding" value="UTF-8"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--配置默认的servlet处理静态资源 -->
+    <mvc:default-servlet-handler />
+
+    <!--开启mvc注解注入 -->
+    <mvc:annotation-driven/>
+
+    <!--配置视图控制器-->
+<!--    <mvc:view-controller path="/" view-name="user/index"></mvc:view-controller>-->
+    <mvc:view-controller path="/to/regist" view-name="user/regist"></mvc:view-controller>
+    <mvc:view-controller path="/to/login" view-name="user/login"></mvc:view-controller>
+    <mvc:view-controller path="/to/cart" view-name="cart/cartItem"></mvc:view-controller>
+    <mvc:view-controller path="/to/manager" view-name="admin/manager"></mvc:view-controller>
+
+
+    <!--配置文件上传解析器-->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
+    <!-- 配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/book/page"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/regist"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <bean class="com.jia.bookShop.interceptor.bookShopInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+
+    <!-- 开启事务的注解驱动
+    将使用@Transactional注解标识的方法或类中所有的方法使用事务进行管理
+    transaction-manager设置事务管理器的id
+    可以不写
+    -->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+</beans>

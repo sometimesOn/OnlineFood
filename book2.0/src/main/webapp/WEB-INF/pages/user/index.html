@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>布鲁书城</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/index.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}">
+    <script type="text/javascript" th:src="@{/static/script/index.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/axios.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/common.js}"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a th:href="@{/book/page}"><img class="logo" th:src="@{/static/imgs/logo.jpg}" /></a>
+            <a th:href="@{/book/page}"><span class="f25">布鲁书城</span></a>
+        </div>
+        <div class="header-right">
+            <span th:if="${session.currentUser!=null}"><a th:if="${session.currentUser.getRole()==1}" class="normal-btn" th:href="@{/to/manager}">后台管理</a></span>
+            <span th:if="${session.currentUser==null}"><a class="normal-btn" th:href="@{/to/regist}">注册</a></span>
+            <span th:if="${session.currentUser==null}"><a class="normal-btn" th:href="@{/to/login}">登录</a></span>
+            <span><a class="normal-btn" th:href="@{/order}">我的订单</a></span>
+            <span><a class="normal-btn" th:href="@{/to/cart}">我的购物车</a></span>
+            <span th:if="${session.currentUser!=null}"><a class="danger-btn" th:href="@{/user/quit}">退出登录</a></span>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+       <div style="height: 50px;width: 100%" >
+           <div class="left-div">
+               <p th:if="${session.currentUser!=null}">尊贵的&#12288;<span th:text="${session.currentUser.uName}" style="color: red" ></span>&#12288;用户,欢迎光临</p>
+           </div>
+           <div class="right-div">
+               <form th:action="@{/book/page}" method="get">
+                   <input placeholder="请输入关键字查询" name="keyword" th:value="${session.keyword}">
+                   <input type="hidden" value="search" name="operate">
+                   <button type="submit">搜 索</button>
+               </form>
+           </div>
+       </div>
+        <br>
+        <div class="bookList-content">
+            <div th:if="${#lists.isEmpty(session.pageInfo.list)}">
+                <p style="text-align: center">未查询到该书籍，请更换关键字查询!<span><a th:href="@{/book/page}" style="color: red">返回</a></span> </p>
+            </div>
+            <div class="bookList-item" th:each="book : ${session.pageInfo.list}" th:object="${book}">
+                <img th:src="*{bookImg}">
+                <p th:text="|书名:*{bookName}|"></p>
+                <p th:text="|作者:*{author}|"></p>
+                <p th:text="|价格:￥*{price}|"></p>
+                <p th:text="|销量:*{saleCount}|"></p>
+                <p th:text="|库存:*{bookCount}|"></p>
+                <form method="post" th:action="@{'/cart/'+${book.bookId}}">
+                    <button type="submit">加入购物车</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center">
+            <a class="normal-btn" th:if="${session.pageInfo.hasPreviousPage}" th:href="@{/book/page(pageNum=1)}">首 页</a>
+            <a class="normal-btn" th:if="${session.pageInfo.hasPreviousPage}" th:href="@{/book/page(pageNum=${session.pageInfo.prePage})}">上一页</a>
+            <span th:each="num : ${session.pageInfo.navigatepageNums}">
+            <a class="littleBig-btn" th:href="@{/book/page(pageNum=${num})}" th:text="'&#12288;'+${num}+'&#12288;'"></a>
+            </span>
+            <a class="normal-btn" th:if="${session.pageInfo.hasNextPage}" th:href="@{/book/page(pageNum=${session.pageInfo.nextPage})}">下一页</a>
+            <a class="normal-btn" th:if="${session.pageInfo.hasNextPage}" th:href="@{/book/page(pageNum=${session.pageInfo.pages})}">尾 页</a>
+        </div>
+    </div>
+</body>
+</html>
