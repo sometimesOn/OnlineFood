@@ -1,0 +1,40 @@
+server:
+  8080
+spring:
+  application:
+    name: bulu
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/bulu?serverTimezone=Asia/Shanghai&useUnicode=true
+      username: root
+      password: 974955
+      time-between-eviction-runs-millis: 3000000
+  #redis
+  redis:
+    host: 192.168.71.130
+    port: 6379
+    database: 0
+    connect-timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 10
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+
+
+
+bulu:
+  path: D:\data\img\bulu\
+
