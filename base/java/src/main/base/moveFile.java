@@ -53,7 +53,7 @@ public class moveFile {
                     // 复制并且改名
                     FileOutputStream output = new FileOutputStream(newPath
                             + "/" + "rename_" + (temp.getName()).toString());
-                    byte[] bufferarray = new byte[1024 * 64];
+                    byte[] bufferarray = new byte[(int) temp.length()];
                     int prereadlength;
                     while ((prereadlength = input.read(bufferarray)) != -1) {
                         output.write(bufferarray, 0, prereadlength);

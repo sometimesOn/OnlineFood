@@ -1,6 +1,8 @@
 package main.base;
 
 
+import java.util.Stack;
+
 public class biTree {
 
 
@@ -8,6 +10,24 @@ public class biTree {
 
 
         print99();
+
+        int[] arr = new int[]{1,2,3,4,5,6,7};
+
+        BITNode bitNode = insertArrayIntoTree(arr, 0, arr.length - 1);
+
+        pre(bitNode);
+
+        System.out.println();
+
+        mid(bitNode);
+
+        System.out.println();
+
+        post(bitNode);
+
+        System.out.println();
+
+        preOrder(bitNode);
 
 
     }
@@ -33,6 +53,56 @@ public class biTree {
         return root;
     }
 
+    public static void pre(BITNode bitNode){
+
+        if(bitNode == null){
+            return;
+        }
+
+        if (bitNode != null){
+
+            System.out.print(bitNode.getData() + "\t");
+            pre(bitNode.getLeft());
+            pre(bitNode.getRight());
+
+        }
+
+    }
+
+    public static void mid(BITNode bitNode){
+
+
+        if(bitNode == null){
+            return;
+        }
+
+        if(bitNode != null){
+
+            pre(bitNode.getLeft());
+            System.out.print(bitNode.getData() + "\t");
+            pre(bitNode.getRight());
+
+        }
+
+    }
+
+    public static void post(BITNode bitNode){
+
+
+        if(bitNode == null){
+            return;
+        }
+
+        if(bitNode != null){
+
+            pre(bitNode.getLeft());
+            pre(bitNode.getRight());
+            System.out.print(bitNode.getData() + "\t");
+
+        }
+
+    }
+
 
     public static void print99(){
 
@@ -49,6 +119,25 @@ public class biTree {
 
         }
 
+    }
+
+    /**
+     * 非递归
+     * @param root
+     */
+    public static void preOrder(BITNode root) {
+        Stack<BITNode> stack = new Stack<>();
+        BITNode node = root;
+        while (node != null || !stack.empty()) {
+            if (node != null) {
+                System.out.print(node.getData()+ "->");
+                stack.push(node);
+                node = node.getLeft();
+            } else {
+                BITNode tem = stack.pop();
+                node = tem.getRight();
+            }
+        }
     }
 
 
