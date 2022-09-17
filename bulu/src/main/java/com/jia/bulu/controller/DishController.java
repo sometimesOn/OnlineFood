@@ -15,6 +15,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +37,9 @@ public class DishController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CacheManager cacheManager;
 
     /**
      * 菜品分页
@@ -112,6 +119,7 @@ public class DishController {
      * @return
      */
     @GetMapping("/{id}")
+    @Cacheable(value = "DishDto",key = "#id",condition = "#result != null ")
     public R<DishDto> get(@PathVariable("id") Long id){
 
         DishDto dishDto = dishService.getByIdWithFlavor(id);
@@ -126,6 +134,7 @@ public class DishController {
      * @return
      */
     @PutMapping
+    @CacheEvict(value = "DishDto",key = "#dishDto.id")
     public R<String> update(@RequestBody DishDto dishDto){
 
         dishService.updateWithFlavor(dishDto);
