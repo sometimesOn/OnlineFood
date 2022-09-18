@@ -1,7 +1,5 @@
 package main.base;
 
-import javax.swing.tree.TreeNode;
-
 public class BITNode {
 
     private BITNode left;

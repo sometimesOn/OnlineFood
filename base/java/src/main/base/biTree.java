@@ -1,6 +1,8 @@
 package main.base;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class biTree {
@@ -10,6 +12,20 @@ public class biTree {
 
 
         print99();
+
+//        class TreeNode{
+//
+//            public int data;
+//            public TreeNode left;
+//            public TreeNode right;
+//
+//        }
+//
+//        TreeNode treeNode = new TreeNode();
+
+//        Map<Integer, Integer> map = new HashMap<>();
+
+
 
         int[] arr = new int[]{1,2,3,4,5,6,7};
 
@@ -139,6 +155,8 @@ public class biTree {
             }
         }
     }
+
+
 
 
 }
