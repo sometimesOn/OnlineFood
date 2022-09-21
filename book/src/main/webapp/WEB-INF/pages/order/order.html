@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/order.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}" />
+    <script type="text/javascript" th:src="@{/static/script/order.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/common.js}"></script>
+</head>
+<body>
+    <div class="order-head">
+        <div class="order-head-left">
+            <span><a class="f30"><img class="logo_left" th:src="@{/static/img/logo.jpg}" />布鲁书城</a></span>
+            <span class="active">我的订单</span>
+        </div>
+        <div class="order-head-right" >
+            <span th:unless="${session.currentUser.getUname().isEmpty()}" th:text="|欢迎:${session.currentUser.getUname()}|" style="color: red"></span>
+            <span><button th:onclick="goCartPage()" class="a-btn"> 我的购物车</button></span>
+            <span><button th:onclick="goHome()" class="a-btn">继续购物</button></span>
+            <span th:unless="${session.currentUser.getUname().isEmpty()}"><button class="del-btn" th:onclick="quit()">退出登录</button></span>
+        </div>
+    </div>
+    <hr style="border-color: brown">
+    <div class="order-container">
+        <div class="order-table-div">
+            <table id="order-table">
+                <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>订单日期</th>
+                        <th>订单金额</th>
+                        <th>订单数量</th>
+                        <th>订单状态</th>
+                        <th>订单详情</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(session.currentUser.orderBeanList)}">
+                        <th colspan="6" class="f25"> 暂无订单</th>
+                    </tr>
+                    <tr th:unless="${#lists.isEmpty(session.currentUser.orderBeanList)}" th:each="orderList : ${session.currentUser.orderBeanList}">
+                        <td th:text="${orderList.orderNo}"></td>
+                        <td th:text="${orderList.orderDate}"></td>
+                        <td th:text="${orderList.orderMoney}"></td>
+                        <td th:text="${orderList.totalBookCount}"></td>
+                        <td th:if="${orderList.orderStatus==0}">未发货</td>
+                        <td th:if="${orderList.orderStatus==1}">已发货</td>
+                        <td th:if="${orderList.orderStatus==2}">已到达</td>
+                        <td th:if="${orderList.orderStatus==3}">已签收</td>
+                        <td><button class="pri-btn">查看详情</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</body>
+</html>

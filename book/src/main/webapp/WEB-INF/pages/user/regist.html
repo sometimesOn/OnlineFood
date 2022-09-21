@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>布鲁书城注册</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/regist.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}" />
+    <script type="text/javascript" th:src="@{/static/script/common.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/regist.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/axios.min.js}"></script>
+</head>
+<body>
+    <div class="regist-head">
+        <div>
+            <a><img id="logo" th:src="@{/static/img/logo.jpg}" /></a>
+            <span class="f40">布鲁书城</span>
+        </div>
+    </div>
+    <div class="regist-container" id="regist_div">
+        <div class="regist-content">
+            <form class="regist-form" method="post" th:action="@{/user.do}" onsubmit="return preRegist();">
+                <input type="hidden" name="operate" value="regist">
+                <h1>用户注册</h1>
+                <div class="form-item">
+                    <label>用户账户:</label>
+                    <input type="text" id="unameTxt" name="uname" placeholder="请输入账号" onblur="cUname(this.value)"/>
+                </div>
+                <span class="errorMsg" id="unameSpan">用户名长度应为4到16个数字或字母组成</span>
+                <div class="form-item">
+                    <label>用户密码:</label>
+                    <input type="password" name="pwd" id="pwdTxt" placeholder="请输入密码">
+                </div>
+                <span class="errorMsg" id="pwdSpan">密码至少为五位</span>
+                <div class="form-item">
+                    <label>确认密码:</label>
+                    <input type="password" name="cpwd" id="cpwdTxt" placeholder="请再次输入密码">
+                </div>
+                <span class="errorMsg" id="cpwdSpan">两个输入的密码要一致</span>
+                <div class="form-item">
+                    <label>用户邮箱:</label>
+                    <input type="email" name="email" id="emailTxt" placeholder="请输入邮箱">
+                </div>
+                <span class="errorMsg" id="emailSpan">邮箱格式有误</span>
+                <div class="form-item">
+                    <div>
+                        <label>验证码&#12288;:</label>
+                        <input type="text" name="key" placeholder="请输入验证码">
+                    </div>
+                </div>
+                <div class="form-item">
+                    <img th:src="@{/kaptcha.jpg}" />
+                </div>
+                <div class="form-item">
+                    <button type="submit" class="btn-20">注 册</button>
+                    <button type="button" th:onclick="gologin()" class="btn-20">返回登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

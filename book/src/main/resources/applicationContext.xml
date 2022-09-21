@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans [
+        <!ELEMENT beans (bean*)>
+        <!ELEMENT bean (property*)>
+        <!ELEMENT property (#PCDATA)>
+        <!ATTLIST bean id ID #REQUIRED>
+        <!ATTLIST bean class CDATA #IMPLIED>
+        <!ATTLIST property name CDATA #IMPLIED>
+        <!ATTLIST property ref IDREF #IMPLIED>
+]>
+
+<beans>
+    <bean id="bookDAO" class="com.jia.book.dao.impl.BookDAOImpl"/>
+    <bean id="userDAO" class="com.jia.book.dao.impl.UserDAOImpl" />
+    <bean id="cartItemDAO" class="com.jia.book.dao.impl.CartItemDAOImpl"/>
+    <bean id="orderDAO" class="com.jia.book.dao.impl.OrderDAOImpl"/>
+    <bean id="orderItemDAO" class="com.jia.book.dao.impl.OrderItemDAOImpl"/>
+
+    <bean id="userService" class="com.jia.book.service.impl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO" />
+    </bean>
+    <bean id="bookService" class="com.jia.book.service.impl.BookServiceImpl">
+        <property name="bookDAO" ref="bookDAO"/>
+    </bean>
+    <bean id="cartItemService" class="com.jia.book.service.impl.CartItemServiceImpl">
+        <property name="cartItemDAO" ref="cartItemDAO"/>
+    </bean>
+    <bean id="orderService" class="com.jia.book.service.impl.OrderServiceImpl">
+        <property name="orderDAO" ref="orderDAO"/>
+        <property name="orderItemDAO" ref="orderItemDAO"/>
+        <property name="cartItemDAO" ref="cartItemDAO"/>
+    </bean>
+
+    <bean id="page" class="com.jia.book.myssm.controller.pageController" />
+    <bean id="user" class="com.jia.book.controller.userController">
+        <property name="userService" ref="userService"/>
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+    <bean id="cart" class="com.jia.book.controller.cartController">
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+    <bean id="book" class="com.jia.book.controller.bookController">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="order" class="com.jia.book.controller.OrderController">
+        <property name="orderService" ref="orderService"/>
+    </bean>
+</beans>

@@ -1,0 +1,37 @@
+.regist-head{
+    height: 80px;
+    width: 100%;
+}
+
+body{
+    font-family: "Microsoft YaHei UI Light";
+    font-size: 18px;
+    background-image: url("../../static/img/background.png");
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+.regist-container{
+    height: 550px;
+    width: 100%;
+}
+
+.regist-content{
+    width: 400px;
+    height: 500px;
+    margin-left: 71%;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid blue;
+    background-color: white;
+}
+.regist-form{
+    margin-top: 10px;
+}
+.errorMsg{
+    font-size: 10px;
+    color: red;
+    visibility: hidden;
+}
+
+

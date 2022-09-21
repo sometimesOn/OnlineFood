@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/index.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}" />
+    <script type="text/javascript" th:src="@{/static/script/index.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/common.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="head-top">
+            <div class="left">
+                <span class="head-f20">送至北京</span>
+            </div>
+            <div class="right">
+                <span th:unless="${session.currentUser.getUname().isEmpty()}" th:text="|欢迎:${session.currentUser.getUname()}|" style="color: gold"></span>
+                <span th:if="${session.currentUser.getRole()==1}"><button class="cart-btn">后台管理</button></span>
+                <span>
+                    <button th:onclick="goCartPage()" class="a-btn" >我的购物车
+                        <span style="color: red" th:if="${session.currentUser.cart.getTotalCount()>0}" th:text="${session.currentUser.cart.getTotalCount()}"></span>
+                    </button>
+                </span>
+                <span><button th:onclick="goOrderPage()" class="a-btn"> 我的订单</button></span>
+                <span th:if="${session.currentUser.getUname().isEmpty()}"><button class="cart-btn">登录</button></span>
+                <span th:if="${session.currentUser.getUname().isEmpty()}"><button class="cart-btn">注册</button></span>
+                <span th:unless="${session.currentUser.getUname().isEmpty()}"><button class="cart-btn" th:onclick="quit()">退出登录</button></span>
+            </div>
+        </div>
+        <div class="head">
+            <div class="left">
+                <a><img class="logo_left" th:src="@{/static/img/logo.jpg}" /></a>
+                <span class="f30">布鲁书城</span>
+            </div>
+            <div class="right" style="margin-top: 10px">
+                <form method="post" th:action="@{/book.do}">
+                    <input type="hidden" name="oper" value="search">
+                    <span><input type="text" name="keyword" placeholder="请输入关键词" th:value="${session.keyword}"></span>
+                    <span><button class="btn-20" type="submit">搜 索</button></span>
+                </form>
+            </div>
+        </div>
+        <div class="bookList-head">
+            <p class="f20">图书列表</p>
+        </div>
+        <div th:if="${session.bookList.isEmpty()}">
+            <h2>
+                未找到该书籍，请更换关键字查找
+                <span><a th:href="@{/book.do}">点击返回</a></span>
+            </h2>
+        </div>
+        <div class="bookList-content" th:unless="${session.bookList.isEmpty()}">
+            <div class="bookList-item" th:each="books : ${session.bookList}" th:object="${books}">
+                <img th:src="*{bookImg}">
+                <p th:text="|书名:*{bookName}|"></p>
+                <p th:text="|作者:*{author}|"></p>
+                <p th:text="|价格:￥*{price}|"></p>
+                <p th:text="|销量:*{saleCount}|"></p>
+                <p th:text="|库存:*{bookCount}|"></p>
+                <button class="btn" th:onclick="|addCart(*{id})|">加入购物车</button>
+            </div>
+        </div>
+        <div class="page">
+            <div class="page-btns">
+                <button class="page-btn" th:disabled="${session.pageNo==1}" th:onclick="|page(1)|">首 页</button>
+                <button class="page-btn" th:disabled="${session.pageNo==1}" th:onclick="|page(${session.pageNo-1})|">上一页</button>
+                <span class="f20">当前页</span>
+                <button class="active" th:text="${session.pageNo}"></button>
+                <button class="page-btn" th:disabled="${session.pageNo==session.pageCount}" th:onclick="|page(${session.pageNo+1})|">下一页</button>
+                <button class="page-btn" th:disabled="${session.pageNo==session.pageCount}" th:onclick="|page(${session.pageCount})|">尾页</button>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <div style="margin-top: 30px ; border: 1px solid yellowgreen">
+            <p>联系我们</p>
+            <p>电话：11111111111</p>
+            <p>邮箱：2321182050@qq.com</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的购物车</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/cart.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}"/>
+    <script type="text/javascript" th:src="@{/static/script/cart.js}"></script>
+    <script type="text/javascript" th:src="@{/static/script/common.js}"></script>
+</head>
+<body>
+    <div class="cart-head">
+        <div class="cart-head-left">
+            <span><a class="f30"><img class="logo_left" th:src="@{/static/img/logo.jpg}" />布鲁书城</a></span>
+            <span class="active">我的购物车</span>
+        </div>
+        <div class="cart-head-right" >
+            <span th:unless="${session.currentUser.getUname().isEmpty()}" th:text="|欢迎:${session.currentUser.getUname()}|" style="color: red"></span>
+            <span><button th:onclick="goOrderPage()" class="a-btn"> 我的订单</button></span>
+            <span><button th:onclick="goHome()" class="a-btn">继续购物</button></span>
+            <span th:unless="${session.currentUser.getUname().isEmpty()}"><button class="del-btn" th:onclick="quit()">退出登录</button></span>
+        </div>
+    </div>
+    <hr style="border-color: brown">
+    <div class="cart-container">
+        <div class="cart-table-div">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>图片</th>
+                        <th>商品名称</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>金额</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${session.currentUser.cart.cartItemMap.values().isEmpty()}">
+                       <th colspan="6" class="f25"> 购物车空空如也</th>
+                    </tr>
+                    <tr th:unless="${session.currentUser.cart.cartItemMap.values().isEmpty()}" th:each="cartItem : ${session.currentUser.cart.cartItemMap.values()}">
+                        <td>
+                            <img th:src="${cartItem.book.bookImg}">
+                        </td>
+                        <td th:text="${cartItem.book.bookName}"></td>
+                        <td>
+                            <span><button th:onclick="|count(-1,${cartItem.id})|" class="pri-btn" th:disabled="${cartItem.buyCount==1}">-</button></span>
+                            <input type="text" th:value="${cartItem.buyCount}" style="width: 50px;border-radius: 5px">
+                            <span><button th:onclick="|count(1,${cartItem.id})|" class="pri-btn">+</button></span>
+                        </td>
+                        <td th:text="|￥${cartItem.book.price}|"></td>
+                        <td th:text="${cartItem.totalValue}"></td>
+                        <td>
+                            <button class="del-btn" th:onclick="|del(${cartItem.id})|">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="cart-foot">
+            <div class="cart-foot-left">
+                    <span class="f20">
+                        <button th:onclick="clearCart()" class="del-btn">清空购物车</button>
+                    </span>
+                    <span class="f20">
+                        <button th:onclick="goHome()" class="pri-btn">继续购物</button>
+                    </span>
+            </div>
+            <div class="cart-foot-right">
+                <span class="f20">共<span th:text="${session.currentUser.cart.totalBookCount}"></span>件商品</span>
+                <span class="f20">总金额：￥<span th:text="${session.currentUser.cart.totalMoney}" style="color: red"></span></span>
+                <span class="f20"><button th:onclick="pay()" class="pri-btn">去支付</button></span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="foot">
+        <div style="margin-top: 30px ; border: 1px solid yellowgreen">
+            <p>联系我们</p>
+            <p>电话：11111111111</p>
+            <p>邮箱：2321182050@qq.com</p>
+        </div>
+    </div>
+</body>
+</html>

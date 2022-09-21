@@ -1,0 +1,32 @@
+body{
+    font-family: "Microsoft YaHei UI Light";
+    font-size: 18px;
+    background-image: url("../../static/img/background.png");
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+
+.login_header{
+    height: 80px;
+    width: 100%;
+}
+
+
+.login_content{
+    height: 400px;
+    width: 100%;
+}
+.login_div{
+    width: 400px;
+    height: 350px;
+    background-color: coral;
+    margin-left: 71%;
+    margin-top: 80px;
+    text-align: center;
+    border: 1px solid coral;
+}
+
+.login_form{
+    margin-top: 40px;
+}

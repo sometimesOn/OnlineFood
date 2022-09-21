@@ -1,0 +1,153 @@
+#logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-left: 40%;
+}
+.btn{
+    border:1px solid lightgray;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: blue;
+}
+
+.f40{
+    font-size: 40px;
+    font-family: "Microsoft YaHei UI Light";
+}
+.f30{
+    font-size: 30px;
+    font-family: "Microsoft YaHei UI Light";
+}
+
+.f25{
+    ont-size: 25px;
+    font-family: "Microsoft YaHei UI Light";
+}
+
+.f20{
+    font-size: 20px;
+    font-family: "Microsoft YaHei UI Light";
+}
+.logo_left{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+#img58{
+    width: 78px;
+    height: 98px;
+}
+
+.btn-20{
+    border:1px solid lightgray;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-20:hover{
+    background-color: blue;
+}
+
+.foot{
+    height: 160px;
+    width: 100%;
+    background-color: yellowgreen;
+}
+
+.foot p{
+    text-align: center;
+    font-size: 20px;
+}
+
+.color-red{
+    color: red;
+}
+
+.active{
+    font-size: 20px;
+}
+
+
+.bg-white{
+    background: white;
+    text-decoration: none;
+}
+
+
+.a-btn{
+    background-color: white;
+    cursor: pointer;
+}
+
+.a-btn:hover{
+    background-color: yellow;
+}
+
+.del-btn{
+    background-color: aqua;
+    cursor: pointer;
+}
+
+.del-btn:hover{
+    background-color: red;
+}
+
+.pri-btn{
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.pri-btn:hover{
+    background-color: greenyellow;
+}
+
+.count{
+    width: 40px;
+    height: 40px;
+    size: 30px;
+    cursor: pointer;
+}
+
+.count:hover{
+    background-color: cornflowerblue;
+}
+
+.cart-btn{
+    cursor: pointer;
+}
+.cart-btn:hover{
+    background-color: blue;
+}
+
+.form-item{
+    height: 40px;
+    font-size: 20px;
+}
+
+.form-item,input{
+    height: 20px;
+}
+
+.form-item,img{
+    height: 30px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form-item,button{
+    margin-top: 5px;
+}
