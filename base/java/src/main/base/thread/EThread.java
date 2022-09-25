@@ -4,9 +4,10 @@ public class EThread extends Thread{
 
     public static void main(String[] args) {
 
-        EThread thread = new EThread();
+        EThread eThread = new EThread();
 
-        thread.start();
+
+        eThread.start();
 
     }
 

@@ -80,7 +80,7 @@ public class moveFile {
     }
 
     public static void main(String[] args) {
-        moveFolder("D:/test", "E:/testCopy");
+        moveFolder("E:/testCopy", "D:/test");
     }
 
 }

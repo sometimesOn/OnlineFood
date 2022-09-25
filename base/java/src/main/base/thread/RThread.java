@@ -11,8 +11,10 @@ public class RThread implements Runnable{
 
         Thread thread = new Thread(new RThread());
 
-
         thread.start();
+
+        long id = thread.getId();
+
 
     }
 

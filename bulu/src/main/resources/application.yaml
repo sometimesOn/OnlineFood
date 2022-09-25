@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: bulu
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -35,6 +39,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: assign_id
+
 
 
 
