@@ -9,7 +9,6 @@ com\jia\bulu\config\RedisConfig.class
 com\jia\bulu\controller\ShoppingCartController.class
 com\jia\bulu\common\GlobalExceptionHandler.class
 com\jia\bulu\controller\UserController.class
-com\jia\bulu\utils\RedisToSendMessageUtil.class
 com\jia\bulu\entity\Employee.class
 com\jia\bulu\mapper\EmployeeMapper.class
 com\jia\bulu\service\OrdersService.class

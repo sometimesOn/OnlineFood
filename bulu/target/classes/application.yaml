@@ -3,6 +3,14 @@ server:
 spring:
   application:
     name: bulu
+  banner:
+    charset: UTF-8
+    image:
+      location: banner.txt
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,6 +30,9 @@ spring:
         max-wait: -1
         max-idle: 5
         min-idle: 0
+  cache:
+    redis:
+      time-to-live: 1800000
 
 
 
@@ -32,6 +43,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: assign_id
+
 
 
 

@@ -8,6 +8,7 @@ import com.jia.bulu.service.AddressBookService;
 import com.jia.bulu.utils.BaseContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,6 +68,7 @@ public class AddressBookController {
      * @return
      */
     @GetMapping("/default")
+    @Cacheable
     public R<AddressBook> getDefault(){
 
         LambdaQueryWrapper<AddressBook> queryWrapper = new LambdaQueryWrapper<>();
@@ -90,6 +92,7 @@ public class AddressBookController {
      * @return
      */
     @GetMapping("/list")
+    @Cacheable
     public R<List<AddressBook>> list(AddressBook addressBook){
 
         addressBook.setUserId(BaseContextUtil.getCurrentId());

@@ -63,7 +63,6 @@ D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\utils\BigDecimalUtil.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\controller\OrdersController.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\config\RedisConfig.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\entity\Category.java
-D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\utils\RedisToSendMessageUtil.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\mapper\OrderDetailMapper.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\utils\BaseContextUtil.java
 D:\data\java_code_IDEA\bulu\src\main\java\com\jia\bulu\service\OrdersService.java

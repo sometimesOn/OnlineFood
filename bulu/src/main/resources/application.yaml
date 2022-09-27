@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: bulu
+  banner:
+    charset: UTF-8
+    image:
+      location: banner.txt
   servlet:
     multipart:
       max-file-size: 10MB

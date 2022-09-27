@@ -8,6 +8,8 @@ import com.jia.bulu.service.ShoppingCartService;
 import com.jia.bulu.utils.BaseContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -27,6 +29,7 @@ public class ShoppingCartController {
      * @return
      */
     @GetMapping("/list")
+    @Cacheable(value = "shoppingCartCache",key = "'allShopping'")
     public R<List<ShoppingCart>> list(){
 
         //条件构造器
@@ -48,6 +51,7 @@ public class ShoppingCartController {
      * @return
      */
     @PostMapping("/add")
+    @CacheEvict(value = "shoppingCartCache",allEntries = true)
     public R<ShoppingCart> save(@RequestBody ShoppingCart shoppingCart){
 
         log.info("shoppingCart: {}",shoppingCart);
@@ -96,6 +100,7 @@ public class ShoppingCartController {
      * @return
      */
     @DeleteMapping("/clean")
+    @CacheEvict(value = "shoppingCartCache",allEntries = true)
     public R<String> clean(){
 
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
@@ -113,6 +118,7 @@ public class ShoppingCartController {
      * @return
      */
     @PostMapping("/sub")
+    @CacheEvict(value = "shoppingCartCache",allEntries = true)
     public R<String> sub(@RequestBody ShoppingCart shoppingCart){
 
         log.info("shoppingCart: {}",shoppingCart);

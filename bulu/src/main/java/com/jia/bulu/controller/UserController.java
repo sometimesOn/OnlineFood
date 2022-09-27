@@ -94,6 +94,7 @@ public class UserController {
         //从redis中获取保存的验证码
         String codeFromRedis = (String) redisTemplate.opsForValue().get(phone + ":code");
 
+
         //进行验证码的比对
         if (codeFromRedis != null && codeFromRedis.equals(codeFromUser)){
 

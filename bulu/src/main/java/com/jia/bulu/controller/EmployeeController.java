@@ -64,6 +64,11 @@ public class EmployeeController {
     }
 
 
+    /**
+     * 员工退出登录
+     * @param session
+     * @return
+     */
     @PostMapping("/logout")
     public R<String> logout(HttpSession session){
 
